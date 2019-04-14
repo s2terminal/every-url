@@ -16,7 +16,7 @@ $ npm install --save-dev @s2terminal/every-url
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import EveryURL from '../src/index.tsx';
+import EveryURL from "@s2terminal/every-url";
 
 ReactDOM.render(
   <EveryURL
