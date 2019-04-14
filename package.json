@@ -5,11 +5,11 @@
   "description": "Enable to bookmark dynamic url.",
   "main": "dist/index.js",
   "scripts": {
-    "prepare": "tsc --outDir dist",
-    "develop": "webpack-dev-server --mode development"
+    "prepare": "webpack --config webpack.config.js && mv src/*.d.ts dist/"
   },
   "keywords": [
-    "url", "bookmark"
+    "url",
+    "bookmark"
   ],
   "devDependencies": {
     "@material-ui/core": "^3.9.3",
@@ -23,7 +23,8 @@
     "typescript": "^3.4.3",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.3.1",
+    "webpack-merge": "^4.2.1"
   },
   "peerDependencies": {
     "@material-ui/core": "^3.9.3",
