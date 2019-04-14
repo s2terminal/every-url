@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, List, ListItem, Button, Snackbar, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core/';
+import { Card, CardContent, TextField, List, ListItem, Button, Snackbar, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core/';
 import moment from 'moment';
 
 const storageKey = 'EveryURLState';
@@ -133,7 +133,7 @@ export default class EveryURL extends React.Component<any, PageState> {
     });
 
     return (
-      <>
+      <Card><CardContent>
         <section>
           <h2>{this.props.settings.general.mainURL}</h2>
           <h3>
@@ -185,7 +185,7 @@ export default class EveryURL extends React.Component<any, PageState> {
             </Button>
           </DialogActions>
         </Dialog>
-      </>
+      </CardContent></Card>
     );
   }
 }
