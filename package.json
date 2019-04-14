@@ -1,5 +1,5 @@
 {
-  "name": "every-url",
+  "name": "@s2terminal/every-url",
   "author": "s2terminal",
   "version": "0.0.0",
   "description": "Enable to bookmark dynamic url.",
