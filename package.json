@@ -1,0 +1,44 @@
+{
+  "name": "@s2terminal/every-url",
+  "author": "s2terminal",
+  "version": "0.0.0",
+  "description": "Enable to bookmark dynamic url.",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepare": "tsc --outDir dist",
+    "develop": "webpack-dev-server --mode development"
+  },
+  "keywords": [
+    "url", "bookmark"
+  ],
+  "devDependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.4",
+    "html-webpack-plugin": "^3.2.0",
+    "moment": "^2.24.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.4.3",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^3.9.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "moment": "^2.24.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s2terminal/every-url.git"
+  },
+  "bugs": {
+    "url": "https://github.com/s2terminal/every-url/issues"
+  },
+  "homepage": "https://github.com/s2terminal/every-url",
+  "license": "MIT"
+}
