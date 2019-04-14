@@ -16,31 +16,17 @@ $ npm install --save-dev @s2terminal/every-url
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import EveryURL from "@s2terminal/every-url";
+import EveryURL from '../src/index.tsx';
 
 ReactDOM.render(
   <EveryURL
-    settings={{
-      general: {
-        mainURL: "TODAY URL",
-        otherFeature: "OTHER FEATURE",
-        pathSettings: "PATH SETTINGS",
-        saved: "SAVED",
-        autoRedirect: "AUTO REDIRECT",
-        autoRedirectDescription: "To auto redirect, bookmark this url."
-      }
-    }}
+    uniqueStorageKey="EveryURLState"
     urlSettings={
       {
         host: {
           name: "HOST",
           type: "static",
-          default: "https://example.com/"
-        },
-        beforeDatePath: {
-          name: "BEFORE DATE PATH",
-          type: "static",
-          default: "before/date/path/"
+          default: "https://example.com/before/date/path/"
         },
         datePath: {
           name: "DATE",
@@ -55,6 +41,7 @@ ReactDOM.render(
       }
     }
   />, document.getElementById('main'));
+
 ```
 
 

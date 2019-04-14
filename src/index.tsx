@@ -2,15 +2,32 @@ import React from "react";
 import { Card, CardContent, TextField, List, ListItem, Button, Snackbar, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core/';
 import moment from 'moment';
 
-const storageKey = 'EveryURLState';
-type PathInfo = any;
-interface PageState {
+type PathInfo = { [key: string]: string };
+interface EveryURLState {
   savedOpen: boolean,
   settingsOpen: boolean,
   urlValues: PathInfo
 }
 
-export default class EveryURL extends React.Component<any, PageState> {
+interface URLSetting {
+  name: string,
+  type: string,
+  default: string
+}
+interface EveryURLProps {
+  uniqueStorageKey?: string,
+  settings?: {
+    mainURL: string,
+    otherFeature: string,
+    pathSettings: string,
+    saved: string,
+    autoRedirect: string,
+    autoRedirectDescription: string
+  },
+  urlSettings: { [key: string]: URLSetting }
+}
+
+export default class EveryURL extends React.Component<EveryURLProps, EveryURLState> {
   constructor (props) {
     super(props);
     this.fieldListItem = this.fieldListItem.bind(this);
@@ -22,6 +39,18 @@ export default class EveryURL extends React.Component<any, PageState> {
       this.autoRedirect();
     } else {
       this.state.settingsOpen = true;
+    }
+  }
+
+  static defaultProps = {
+    uniqueStorageKey: "EveryURLState",
+    settings: {
+      mainURL: "TODAY URL",
+      otherFeature: "OTHER FEATURE",
+      pathSettings: "PATH SETTINGS",
+      saved: "SAVED",
+      autoRedirect: "AUTO REDIRECT",
+      autoRedirectDescription: "To auto redirect, bookmark this url."
     }
   }
 
@@ -78,13 +107,13 @@ export default class EveryURL extends React.Component<any, PageState> {
     unsavedState.savedOpen = false;
     unsavedState.settingsOpen = false;
     if (typeof window !== `undefined`) {
-      window.localStorage.setItem(storageKey, JSON.stringify(unsavedState));
+      window.localStorage.setItem(this.props.uniqueStorageKey, JSON.stringify(unsavedState));
     }
     this.setState({ savedOpen: true });
   }
   loadLocalStorage() {
     if (typeof window !== `undefined`) {
-      return JSON.parse(window.localStorage.getItem(storageKey))
+      return JSON.parse(window.localStorage.getItem(this.props.uniqueStorageKey))
     }
   }
 
@@ -135,7 +164,7 @@ export default class EveryURL extends React.Component<any, PageState> {
     return (
       <Card><CardContent>
         <section>
-          <h2>{this.props.settings.general.mainURL}</h2>
+          <h2>{this.props.settings.mainURL}</h2>
           <h3>
             <a href={url} target="_blank">
               {decodeURIComponent(url)}
@@ -144,13 +173,13 @@ export default class EveryURL extends React.Component<any, PageState> {
         </section>
 
         <section>
-          <h3>{this.props.settings.general.otherFeature}</h3>
-          <h4>{this.props.settings.general.pathSettings}</h4>
+          <h3>{this.props.settings.otherFeature}</h3>
+          <h4>{this.props.settings.pathSettings}</h4>
           <Button variant="contained" color="primary" onClick={this.handleClickOpenSetting}>
-            {this.props.settings.general.pathSettings}
+            {this.props.settings.pathSettings}
           </Button>
-          <h4>{this.props.settings.general.autoRedirect}</h4>
-          <p>{this.props.settings.general.autoRedirectDescription}</p>
+          <h4>{this.props.settings.autoRedirect}</h4>
+          <p>{this.props.settings.autoRedirectDescription}</p>
           <TextField
             fullWidth
             value={redirectBookmarkUrl}
@@ -163,7 +192,7 @@ export default class EveryURL extends React.Component<any, PageState> {
           open={this.state.savedOpen}
           autoHideDuration={1000}
           onClose={this.handleSnackClose}
-          message={<span>{this.props.settings.general.saved}</span>}
+          message={<span>{this.props.settings.saved}</span>}
         />
 
         <Dialog
@@ -171,7 +200,7 @@ export default class EveryURL extends React.Component<any, PageState> {
           open={this.state.settingsOpen}
           onClose={this.handleSettingClose}
         >
-          <DialogTitle>{this.props.settings.general.pathSettings}</DialogTitle>
+          <DialogTitle>{this.props.settings.pathSettings}</DialogTitle>
           <DialogContent>
             <form>
               <List>
@@ -181,7 +210,7 @@ export default class EveryURL extends React.Component<any, PageState> {
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleSettingClose} color="primary" variant="contained" >
-              {this.props.settings.general.pathSettings}
+              {this.props.settings.pathSettings}
             </Button>
           </DialogActions>
         </Dialog>
