@@ -1,7 +1,7 @@
 {
   "name": "@s2terminal/every-url",
   "author": "s2terminal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Enable to bookmark dynamic url.",
   "main": "dist/index.js",
   "scripts": {
